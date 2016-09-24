@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 
 namespace ThirtyDaysofTDD.UnitTests
 {
@@ -32,6 +33,16 @@ namespace ThirtyDaysofTDD.UnitTests
 
             Assert.AreEqual(expectedResult,result);
 
+        }
+
+        [Test]
+        [ExpectedException(typeof(ArgumentException))]
+        public void ShouldGetAnArgumentExceptionWhereCharacterToScanForIsLargerThanOneCharacter()
+        {
+            var sentenceToScan = "This test should throw an exception";
+            var characterToScanFor = "xx";
+            var stringUtils = new StringUtils();
+            stringUtils.FindNumberOfOccurences(sentenceToScan, characterToScanFor);
         }
     }
 }

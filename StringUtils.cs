@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 
 namespace ThirtyDaysofTDD.UnitTests
 {
@@ -6,10 +7,16 @@ namespace ThirtyDaysofTDD.UnitTests
     {
         public int FindNumberOfOccurences(string sentenceToScan, string characterToScanFor)
         {
-            var stringToCheckAsCharacterArray = sentenceToScan.ToCharArray();
-            var characterToCheckFor = char.Parse(characterToScanFor);
+            
+                var stringToCheckAsCharacterArray = sentenceToScan.ToCharArray();
+                if (characterToScanFor.Length != 1)
+                {
+                    throw new ArgumentException();
+                }
+                var characterToCheckFor = char.Parse(characterToScanFor);
 
-            return stringToCheckAsCharacterArray.Count(currentchar => currentchar == characterToCheckFor);
+                return stringToCheckAsCharacterArray.Count(currentchar => currentchar == characterToCheckFor);
+           
         }
     }
 }
